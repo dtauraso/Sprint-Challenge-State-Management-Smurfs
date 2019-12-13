@@ -23,10 +23,39 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+  	context api solves the prop drilling problem
+
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+  	actions
+		  kind of reducer code to use based on user input
+	  	if they do a fetch or press a button then it's called like 
+		  FETCH_SUCCESS, or BUTTON_PRESSE
+	reducers
+		code to manipulate the data from the user input
+	store
+		immutable single js object all your code uses
+		single source of truth
+		immutability allows for time travel debugging
+		
+	The store is available to all components, so it's a single source of truth
+
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+  	Application state is available to the entire program, component state is only available to the component and it's sub components.  This question is like global variables vs local variables.  Having too many global will make the program very hard to use, so it's better to use locals/component state when possible to avoid hard to find bugs and keeps code clearer.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+  	redux-thunk is a middleware system
+    It's mostly used for asynchronous functions.
+    It's usually used to make api calls(similar to what useEffect does but not the same role)
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+  
+  redux is my favorite one so far cause it formalized the code pretty well.
 
 ## Project Set Up
 
