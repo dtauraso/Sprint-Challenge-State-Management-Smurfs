@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
-import { getSmurfs, postSmurf } from '../actions/smurfActions';
+import { getSmurfs, postSmurf, deleteAddedSmurfs } from '../actions/smurfActions';
 import Smurf from './Smurf';
 const Smurfs = props => {
 
@@ -82,6 +82,7 @@ const Smurfs = props => {
                 </label>
                 <button>Add</button>
             </form>
+            <button onClick={(e) => props.deleteAddedSmurfs(e, props.smurfs)}>Delete Added Smurfs</button>
         </div>
     )
 }
@@ -96,5 +97,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { getSmurfs, postSmurf }
+    { getSmurfs, postSmurf, deleteAddedSmurfs }
 )(Smurfs)
