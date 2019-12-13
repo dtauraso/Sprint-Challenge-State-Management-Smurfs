@@ -30,7 +30,7 @@ export const getSmurfs = () => dispatch => {
 
 export const postSmurf = (event, smurfs, smurf) => dispatch => {
     event.preventDefault();
-    // const newSmurfs = [...smurfs, smurf]
+
     console.log(smurf)
     dispatch({ type: POST_SMURF_START })
     axios
@@ -49,15 +49,13 @@ export const deleteAddedSmurfs = (event, smurfs) => dispatch => {
 
     event.preventDefault()
     dispatch({ type: DELETE_SMURF_START })
-    smurfs.forEach(smurf => {
-        if(smurf.id > 0) {
+    smurfs.filter(smurf => smurf.id > 0).forEach(smurf => {
             axios
-            .delete(`http://localhost:3333/smurfs/${smurf.id}`)
-            .catch(err => {
-                console.log(err.response)
-                dispatch({type: DELETE_SMURF_FAILURE, payload: err.response})
-            })
-        }   
+                .delete(`http://localhost:3333/smurfs/${smurf.id}`)
+                .catch(err => {
+                    console.log(err.response)
+                    dispatch({type: DELETE_SMURF_FAILURE, payload: err.response})
+                })
         
     })
     console.log("done")
