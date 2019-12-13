@@ -1,12 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
-import { getSmurfs } from '../actions/smurfActions';
+import { getSmurfs, postSmurf } from '../actions/smurfActions';
 import Smurf from './Smurf';
 const Smurfs = props => {
 
+    const [ newSmurf, setNewSmurf ] = useState({
+        name: '',
+        age: '',
+        height: ''
+    })
+    const handleNameChange = changeEvent => {
+        setNewSmurf({...newSmurf, 'name': changeEvent.target.value})
+        // console.log(newSmurf)
+    }
+
+    const handleAgeChange = changeEvent => {
+        setNewSmurf({...newSmurf, 'age': parseInt(changeEvent.target.value)})
+        // console.log(newSmurf)
+    }
+
+    const handleHeightChange = changeEvent => {
+        setNewSmurf({...newSmurf, 'height': changeEvent.target.value})
+        // console.log(newSmurf)
+    }
+
+    const handleFormSubmit = submitEvent => {
+        submitEvent.preventDefault();
+        // setNewSmurf({
+        //     ...newSmurf,
+        //     'height': newSmurf.height + 'cm'
+        // })
+        // quick cheat
+        newSmurf['height'] += 'cm'
+        console.log("submit", newSmurf)
+    }
     return (
         <div>
             <h1>Smurfs</h1>
@@ -21,6 +51,37 @@ const Smurfs = props => {
                 }
             </div>
             <button onClick={props.getSmurfs}>Get Smurfs!</button>
+
+            <form onSubmit={(e) => props.postSmurf(e, props.smurfs, newSmurf)}>
+                <label>
+                    Name
+                <input
+                    value={newSmurf.name}
+                    onChange={handleNameChange}
+                    type="text"
+                    name="name"
+                ></input>
+                </label>
+                <label>
+                    Age
+                <input
+                    value={newSmurf.age}
+                    onChange={handleAgeChange}
+                    type="text"
+                    name="age"
+                ></input>
+                </label>
+                <label>
+                    Height
+                <input
+                    value={newSmurf.height}
+                    onChange={handleHeightChange}
+                    type="text"
+                    name="height"
+                ></input>
+                </label>
+                <button>Add</button>
+            </form>
         </div>
     )
 }
@@ -35,5 +96,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { getSmurfs }
+    { getSmurfs, postSmurf }
 )(Smurfs)

@@ -50,8 +50,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
 
   	redux-thunk is a middleware system
-		You run certain kind of functions before using your reducer.
-		The function can do whatever needs to be done before the reducer.
+    It's mostly used for asynchronous functions.
     It's usually used to make api calls(similar to what useEffect does but not the same role)
 
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
